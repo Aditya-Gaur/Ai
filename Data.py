@@ -14,4 +14,8 @@ conversation = ["What is your favorite color ?",
                "What is your favorite food ?",
                "What is your favorite singer ?",
                "What is your favorite acter/actress ?",
-               "What is your favorite song ?"]
+               "What is your favorite song ?",
+               "Are you male or female ?",
+               "What's your relationship status ?",
+               "Which Social Media you use",
+               "What are your other interests ?"]
