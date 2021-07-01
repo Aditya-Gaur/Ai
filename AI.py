@@ -12,9 +12,10 @@ temp_user_data={
     "Gender":"",
     "Relationship status":"",
     "Social media":"",
-    "Possible_Interests": ["Computers", "Singing", "Dancing", "Coding/Programming", "Studying", "Physics", "Chemistry", "Maths", "Biology", "Acting", "Streaming", "Music", "Movies", "Binge_watching", "Gaming", "Reading"],
     "Interests": []
 }
+
+Possible_Interests=["Computers", "Singing", "Dancing", "Coding/Programming", "Studying", "Physics", "Chemistry", "Maths", "Biology", "Acting", "Streaming", "Music", "Movies", "Binge_watching", "Gaming", "Reading"]
 
 keys_tuple_list=list()
 keys_lists_list=list()
@@ -99,7 +100,7 @@ def Ask():
     index = -1
     for i in temp_user_data:
         index += 1
-        if temp_user_data[i] == temp_user_data[question_dat]:
+        if temp_user_data[i] == question_dat:
             print(conversation[index]) 
 
 def Store(query):
