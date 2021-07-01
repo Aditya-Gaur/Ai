@@ -89,7 +89,7 @@ dump = ""
 def Ask():
     global dump
     unfilled = []
-    for info in temp_user_data.keys:
+    for info in temp_user_data.keys():
         if temp_user_data[info] == "":
             unfilled.append(info)
 
@@ -99,21 +99,21 @@ def Ask():
     for i in temp_user_data:
         index += 1
         if temp_user_data[i] == temp_user_data[question_dat]:
-	        return conversation[index]
+            return conversation[index]
 
 def Store(query):
     global dump
     temp_user_data[dump] = query
-	
+
 
 while True:
-	user_query = input()
-	print("You : "+user_query)
-	ans = Answer(user_query)
-	if response_count == 2:
-		print(ans)
-		Ask()
-		query = input(":")
-		Store()
-	else:
-		print(ans)
+    user_query = input(":")
+    print("You : "+user_query)
+    ans = Answer(user_query)
+    if response_count == 2:
+        print(ans)
+        Ask()
+        query = input(":")
+        Store(query)
+    else:
+        print(ans)
