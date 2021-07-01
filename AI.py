@@ -1,12 +1,27 @@
 import random
 from Data import Answers
-from Data import temp_user_data
 from Data import conversation
-from Data import change_user_data
+
+temp_user_data={
+
+    "Favorite color":"",
+    "Favorite food":"",
+    "Favorite singer":"",
+    "Favorite acter/actress":"",
+    "Favorite song":"",
+    "Gender":"",
+    "Relationship status":"",
+    "Social media":"",
+    "Possible_Interests": ["Computers", "Singing", "Dancing", "Coding/Programming", "Studying", "Physics", "Chemistry", "Maths", "Biology", "Acting", "Streaming", "Music", "Movies", "Binge_watching", "Gaming", "Reading"],
+    "Interests": []
+}
 
 keys_tuple_list=list()
 keys_lists_list=list()
 values_lists_list=list()
+flag = False
+#Counter for responses given till now used to initiate conversation
+response_count = 0
 
 for a in Answers.keys():
     keys_tuple_list.append(a)
@@ -17,8 +32,6 @@ for b in keys_tuple_list:
 for c in Answers.values():
     values_lists_list.append(c)
 
-#Counter for responses given till now used to initiate conversation
-response_count = 0
 
 def Answer(query):
 
@@ -72,87 +85,34 @@ def Answer(query):
         response_count += 1
         return not_found
 
-#Data for Store
-temp_data_ask_store = ""
-
+dump = ""
 def Ask():
-    global temp_data_ask_store
+    global dump
     unfilled = []
-    for info in temp_user_data:
+    for info in temp_user_data.keys:
         if temp_user_data[info] == "":
             unfilled.append(info)
-    
-    print(unfilled) #Remove this
 
     question_dat = random.choice(unfilled)
-    temp_data_ask_store = question_dat
+    dump = quesion_dat
     index = -1
     for i in temp_user_data:
         index += 1
-        if temp_user_data[i] == temp_user_data[question_dat]:
-            return conversation[index]
-
+        if temp_user_data[i] == temp_user_data[question_dat]: 
+		return conversation[index]
 def Store(query):
-    global response_count
-    key = temp_data_ask_store
-    change_user_data(key, query)
-    return "Nice"
+    global dump
+    temp_user_data[dump] = query
+	
 
-import tkinter
-from tkinter import Entry, ttk
-from tkinter import scrolledtext
-from PIL import Image
-
-flag = False
-def write():
-    global flag
-    global response_count
-    if flag == True:
-        Query=input_area.get().title()
-        text_area.config(state='normal')
-        text_area.insert('end',"You: "+Query+"\n")
-        text_area.insert('end',"RumI: "+Store(Query)+"\n")
-        text_area.config(state='normal')
-        input_area.delete(0,'end')
-        response_count = 0
-        flag = False
-    else:
-        Query=input_area.get().title()
-        text_area.config(state='normal')
-        text_area.insert('end',"You: "+Query+"\n")
-        text_area.insert('end',"RumI: "+Answer(Query)+"\n")
-        text_area.config(state='normal')
-        input_area.delete(0,'end')
-
-    if response_count == 2:
-        text_area.insert('end',"RumI: "+Ask()+"\n")
-        flag = True
-
-win = tkinter.Tk()
-win.maxsize(350,600)
-win.minsize(350,600)
-win.configure(bg="lightgray")
-
-chat_label = tkinter.Label(win,text="Chat", bg="lightgray")
-chat_label.config(font=("Arial",12))
-chat_label.pack(padx=20, pady=5)
-
-text_area = tkinter.scrolledtext.ScrolledText(win)
-text_area.pack(padx=20, pady=5)
-text_area.insert('end',"RumI: Hello\n")
-text_area.config(state='disabled')
-
-msg_label = tkinter.Label(win,text="Message", bg="lightgray")
-msg_label.config(font=("Arial",12))
-msg_label.pack(padx=20, pady=5)
-
-input_area = Entry(win,width=100)
-input_area.pack(padx=20,pady=5)
-input_area.bind("<Return>",write)
-input_area.focus_set()
-
-send_button = tkinter.Button(win, text="Send",command=write)
-send_button.config(font=("Arial",12))
-send_button.pack(padx=20,pady=5)
-
-win.mainloop()  
+while True:
+	user_query = input()
+	printf("You : {user_query}")
+	ans = Answer(user_query)
+	if response_count == 2:
+		print(ans)
+		Ask()
+		query = input(":")
+		Store()
+	else:
+		print(ans)
