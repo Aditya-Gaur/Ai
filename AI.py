@@ -95,11 +95,12 @@ def Ask():
 
     question_dat = random.choice(unfilled)
     dump = question_dat
+    print(dump)
     index = -1
     for i in temp_user_data:
         index += 1
         if temp_user_data[i] == temp_user_data[question_dat]:
-            return conversation[index]
+            print(conversation[index]) 
 
 def Store(query):
     global dump
@@ -108,7 +109,6 @@ def Store(query):
 
 while True:
     user_query = input(":")
-    print("You : "+user_query)
     ans = Answer(user_query)
     if response_count == 2:
         print(ans)
